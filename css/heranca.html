@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Herança</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lacquer', monospace;
+            font-size: 40px;
+            border: solid 3px red; /*borda por padrão não é transmitida por herança*/
+            padding: 50px;
+            margin: 10px 100px 150px 200px;
+        }
+
+        div {
+            border: inherit; /*herdar borda */
+            padding: inherit;
+
+        }
+
+        div span{
+            font-family: 'Pacifico', monospace;
+        }
+
+        div span.doidona {
+            font-family: 'Monoton';
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Herança</h1>
+    <div>Estou herdando <span>essa fonte linda cursiva</span> <span class="doidona">e essa doidona aqui</span></div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #01</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        div {
+            border: solid 5pc dodgerblue;
+            font-size: 40px;
+            margin: 5px;
+        }
+
+        .big {
+            font-size: 1.5em;
+        }
+
+        .flex-container {
+            display: flex; 
+            flex-direction: column; /*main axis agr é no eixo da coluna*/
+            flex-direction: column-reverse; /*reverte a ordem dos elementos comom são definidos no html*/
+            flex-direction: row-reverse; /*linha reversa*/
+            flex-direction: row;
+            width: 50%;
+            flex-wrap: wrap; /*respeita as dimesões e faz uma quebra de linha*/
+            flex-wrap: wrap-reverse;
+            flex-flow: row wrap;
+            height: 200px; /*altura limitada, ele vai quebrar em várias colunas*/
+            flex-flow: column-reverse wrap;
+            flex-flow: row wrap;
+
+            justify-content: flex-start; /* alinha pro flex start */
+            justify-content: flex-end;
+            justify-content: center;
+            justify-content: space-around; /* coloca espaço entre os elementos para se adequar à largura definida */
+            justify-content: space-between; /* coloca espaço apenas entre os elementos e não nas pontas */
+
+            /* Cross Axis */
+            height: 400px;
+            align-items: stretch; /*padrão*/
+            align-items: baseline; /*base do texto*/
+            align-items: flex-start;
+            align-items: flex-end;
+            align-items: center;
+
+            /* mais de uma linha */
+            align-content: flex-start;
+            align-content: flex-end;
+            align-content: center;
+            align-content: space-around;
+            align-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel big">3</div>
+        <div class="tag nolabel">4</div>
+        <div class="tag nolabel">5</div>
+        <div class="tag nolabel">6</div>
+        <div class="tag nolabel">7</div>
+        <div class="tag nolabel">8</div>
+        <div class="tag nolabel">9</div>
+        <div class="tag nolabel">10</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

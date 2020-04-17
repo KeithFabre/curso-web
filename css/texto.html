@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Texto</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html {
+            font-size: 22px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p {
+            /*--> O recomendado é trabalhar com unidades relativas com respeito a fontes para deixar o site mais acessível <--*/
+            /*valores padrões*/
+            font-size: 1em;
+            font-size: 100%;
+            font-size: 16px;
+            font-size: 12pt;
+
+            /*unidades absolutas*/
+            font-size: 100px; /*tamanho do pixel é relativo, depende da densidade da tela*/
+            font-size: 72pt; /*equivale a 1 polegada*/
+            font-size: 1in; /*1 polegada*/
+
+            /*unidades relativas*/
+            /*em utiliza a referência mais próxima*/
+            font-size: 2.2em; /*padrão do browser multiplicado por 2.2*/
+            font-size: 2.2rem; /*rem utiliza a referência maior da raiz do html*/
+            font-size: 10vh;
+
+            font-family: monospace;
+            font-family: Georgia, serif; /* , dá a ideia de alternativa*/
+            font-family: Verdana, sans-serif;
+            font-family: 'Indie Flower', cursive;
+
+            font-weight: 100;
+            font-style: italic;
+            text-transform: uppercase;
+            word-spacing: 10px;
+            letter-spacing: 20px;
+            line-height: 2.5em;
+            text-align: center;
+        }
+
+        .botao {
+            font-size: 28px;
+            text-decoration: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+        }
+
+        .destaque {
+            color: #fff;
+            background: tomato;
+            box-shadow: 2px 2px 1px 1px #000;
+        }
+
+        .destaque:active {
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            Que texto
+            <br>legal!!!
+        </p>
+    </div>
+    <a href="http://google.com" class="botao destaque" target="_blank">Google</a>
+</body>
+
+</html>

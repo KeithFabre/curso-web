@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Altura e Largura</title>
+    <style>
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-size: 40px;
+            background-color: coral;
+            height: 100%;
+            margin: 0;
+        }
+
+        div {
+            background-color: seagreen;
+        }
+
+        span {
+            background-color: dodgerblue;
+        }
+
+        /*altura percentual, geralmente, só faz diferença de acordo 
+        com a altura do parent */
+
+        span, div {
+            width: 50%;
+            height: 250px; /*unidades absolutas fazem o body aumentar de tamanho */
+            height: 50%;
+            /*por padrão o body compõe toda a largura mas não toda a altura */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Título</div>
+    <span>Subtítulo</span>
+</body>
+
+</html>

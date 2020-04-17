@@ -1,0 +1,76 @@
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #03</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+        }
+        
+        .esquerda {
+            height: 100vh;
+            width: 50%;
+            background-color: coral;
+        }
+        
+        .direita {
+            height: 100vh;
+            width: 50%;
+            background-color: cornflowerblue;
+        }
+        
+        .item {
+            border: solid 5px black;
+            background-color: darkgrey;
+            color: white;
+            height: 100px;
+            font-size: 40px;
+            margin: 10px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="esquerda" dropzone>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div class="direita" dropzone></div>
+    <script>
+        //1. antes de arrastar setar como draggable
+        //2. colocar um id no elemento
+        //3. quando começar o momento de arrastar setar no data transfer o id do elemento que está arrastando
+        //4. pra quando soltar pegar o id do elemento
+        //5. entender o elemento que está sendo movido
+        //6. para adicionar esse elemento em outro local
+        //Quando esse elemento é adicionado em outro local ele é removido de seu local de origem
+        const itens = document.querySelectorAll('[dropzone] .item')
+        itens.forEach((item, index) => {
+            item.draggable =  true
+            item.id = item.id || `draggable-item-${index}`
+            item.ondragstart = e =>
+                e.dataTransfer.setData('item-id', e.target.id) //seta o id do item para quando terminar o evento
+        })
+
+        const dropzones = document.querySelectorAll('[dropzone]')
+        dropzones.forEach(dropzone => {
+            dropzone.ondragover = e => e.preventDefault() //quando termina de arrastar o elemento não faz nada para poder chamar o próx evento
+            dropzone.ondrop = function(e) { //próx evento que pega o que foi setado no on datatransfer e coloca na dropzone
+                const id = e.dataTransfer.getData('item-id') //setou no ondragstart e pegou no ondrop
+                const item = document.getElementById(id)
+                //e.target.appendChild(item) //e.target é o elemento que soltou aquele elemento que foi arrastado
+                dropzone.appendChild(item) //só adiciona o elemento no elemento marcado com dropzone
+            }
+        })
+    </script>
+</body>
+
+</html>

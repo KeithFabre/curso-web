@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #04</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        form input,
+        form select,
+        form button {
+            margin: 10px;
+            font-size: 1.6em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Formulário</h1>
+    <form name="pesquisa" action="http://www.google.com.br/search">
+        <input type="text" name="q" placeholder="Digite o termo...">
+        <select name="hl">
+                <option value="pt-br">Português (Brasil)</option>
+                <option value="en-us">Inglês (Americano)</option>
+            </select>
+        <button submit>Pesquisar</button>
+    </form>
+    <script>
+        /*
+        //com onclick
+        const submit = document.querySelector('[submit]')
+        submit.onclick = function(e) {
+            e.preventDefault()
+
+            const form = e.target.parentNode //e.target é o botão, o parentNode é o formulário
+            const formData = new FormData(form) //criando esse novo formulário se tem os dados à sua disposição
+            formData.append('ajax', true) //gerando novo valor
+            console.log(formData.get('q')) //pega o que foi digitado no campo q
+            console.log(formData.has('hl'))
+
+            for (let dado of formData) { //não colocar let vai deixar disponível em nível global e pode acabar reescrevendo
+                console.log(dado)
+            }
+        }*/
+
+        //com onsubmit
+        const form = document.forms[0]
+        form.onsubmit = function(e) {
+            e.preventDefault()
+
+            const form = e.target
+            const formData = new FormData(form) //criando esse novo formulário se tem os dados à sua disposição
+            formData.append('ajax', true) //gerando novo valor
+            console.log(formData.get('q')) //pega o que foi digitado no campo q
+            console.log(formData.has('hl'))
+
+            for (let dado of formData) { //não colocar let vai deixar disponível em nível global e pode acabar reescrevendo
+                console.log(dado)
+            }
+        }
+
+    </script>
+</body>

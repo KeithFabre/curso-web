@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #03</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        function ajax(config) {
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+
+            //chamado quando status da req mudar
+            xhr.onreadystatechange = e => {
+                if (xhr.readyState === 4) { //req concluída e resposta pronta
+                    if (xhr.status === 200) {
+                        config.sucesso(xhr.responseXML) //responseXML pra interpretar o XML a partir dessa resposta
+                    } else if (xhr.status >= 400) {
+                        config.erro({
+                            codigo: xhr.status,
+                            texto: xhr.statusText
+                        })
+                    }
+                }
+            }
+            xhr.send() //req get sem parâmetro
+        }
+
+        ajax({
+            url: "./dados/estados.xml",
+            metodo: "get",
+            sucesso(resposta) {
+                console.log(resposta)
+                //estados é lista de tags
+                const estados = resposta.getElementsByTagName('estado')
+                //estados transformado em array
+                //reduce transforma array em string
+                //string tem o acumulador (html a ser gerado)
+                //formado pelo li com o nome dos estados dentro
+                //reduce começa com string vazia ''
+                //pra cada interação adiciona um li
+                //no final da concatenação é gerada uma lista com os <li>
+                const itens = Array.from(estados).reduce(
+                    (html, estado) => html + `<li>${estado.attributes.nome.value}</li>`, '' //atributo nome e valor com o nome
+                )
+                //strings serão convertidas pra DOM
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)
+            },
+            erro(e) {
+                const msg = document.createTextNode(`${e.codigo}: ${e.texto}`)
+                document.body.appendChild(msg)
+            }
+        })
+        
+
+    </script>
+</body>

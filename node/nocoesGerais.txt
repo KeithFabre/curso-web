@@ -1,0 +1,24 @@
+Node é o ambiente de execução de js do lado do servidor
+Js dentro do browser permite controlar as aplicações e deixá-las mais ricas e dinâmicas
+
+ Web servers:
+Apache: Baseado em thread (linha de execução independente), é criada uma thread em casa requisição para tratá-la
+Nginx: Tem um único processo master (uma única thread) que fica executando, e quando chega um a requisição
+a thread passa a requisição pra um subsistema pra tratar as requisições a partir de workers
+
+Com mais conexões concorrentes, o apache cai drasticamente no número de requisições por segundo
+Quando mais threads o consumo de memória aumenta muito no apache com o aumento de conexões concorrentes
+O nginx se mantem praticamente estável
+
+O node nasceu pra ser uma plataforma que fizesse a parte de IO (acessar banco, mandar requisições, entradas e saídas) de forma mais correta
+O javascript nasceu para trabalhar com ambientes assíncronos, por isso foi a linguagem escolhida para trabalhar com node
+
+O Node é um runtime em js e é formado por duas partes
+1) V8: interpretador js de código aberto do google
+2) LIBUV: trata de forma assíncrona a parte mais lenta do processo que diz respeito ao IO
+A ideia é que, após o event queue vá ao event loop e saia o mais rápido possível dele para ir para as worker threads
+
+O primeiro eventod a fila entra no event loop e esse evento passa pra uma operação não bloqueante (pode ou não, opcional) e entra nas threads
+Nas threads fica parado esperando uma resposta do banco de dados, o event loop neste momento já está pronto pra atender o próximo evento da fila
+Uma vez que chega uma resposta uma callback de resposta é chamada e o event loop trata para enviar uma resposta ao usuário
+Se mandar alguma operação pesada ao event loop ele vai ficar atrasando os próximos eventos, mas essa lógica fica invisível no node
